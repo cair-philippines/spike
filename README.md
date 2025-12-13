@@ -2,6 +2,8 @@
 
 PyTorch implementation of SPIKE for improved PINN generalization via Koopman regularization.
 
+![SPIKE Architecture](assets/fig_architecture.png)
+
 ## Abstract
 
 Physics-Informed Neural Networks (PINNs) provide a mesh-free approach for solving differential equations by embedding physical constraints into neural network training. However, PINNs tend to overfit within the training domain, leading to poor generalization when extrapolating beyond trained spatiotemporal regions.
