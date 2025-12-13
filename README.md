@@ -2,7 +2,7 @@
 
 PyTorch implementation of SPIKE for improved PINN generalization via Koopman regularization.
 
-![SPIKE Architecture](assets/fig_architecture.png)
+![SPIKE Architecture](assets/SPIKE.png)
 
 ## Abstract
 
