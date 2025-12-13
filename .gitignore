@@ -27,9 +27,8 @@ env/
 .DS_Store
 Thumbs.db
 
-# Logs and data
+# Logs
 *.log
-*.pt
-*.pth
+
+# Old checkpoint folder (moved to results/models/)
 checkpoints/
-results/
