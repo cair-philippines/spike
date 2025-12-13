@@ -6,6 +6,7 @@ Model hierarchy:
 - Koopman: Embedding + linear dynamics u → g(u) → A @ g(u)
 - PIKE: PINN + Koopman combined
 - SPIKE: PIKE + L1 sparsity regularization
+- UDE: PINN + UnknownNN for learning missing dynamics
 """
 
 from .pinn import PINN
@@ -13,6 +14,8 @@ from .embedding import SparseEmbedding
 from .koopman import Koopman
 from .pike import PIKE
 from .spike import SPIKE
+from .unknown_nn import UnknownNN
+from .ude import UDE
 
 __all__ = [
     'PINN',
@@ -20,4 +23,6 @@ __all__ = [
     'Koopman',
     'PIKE',
     'SPIKE',
+    'UnknownNN',
+    'UDE',
 ]

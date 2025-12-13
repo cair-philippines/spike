@@ -149,3 +149,13 @@ Temporal extrapolation, x in [0,1]
 | navier_stokes_2d | x | / | / | / |
 | lorenz | x | / | / | / |
 | seir | x | / | / | / |
+
+## 8. Lyapunov Analysis (Chaotic Systems)
+
+Valid prediction time and tau ratio for Lorenz system (tau_lambda = 1.1s)
+
+| Metric | PINN | PIKE-Euler | PIKE-RK4 | PIKE-EXPM | SPIKE-EXPM |
+|--------|------|------|------|------|------|
+| Valid Time (s) | 0.07 | 12.12 | 0.07 | 12.12 | 12.12 |
+| Tau Ratio | 0.06 | 11.02 | 0.06 | 11.02 | 11.02 |
+| Short-term MSE | 2.31e+01 | 1.60e-01 | 1.93e+01 | 6.16e-01 | 6.16e-01 |
