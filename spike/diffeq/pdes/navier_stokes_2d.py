@@ -144,10 +144,37 @@ class NavierStokes2D(BasePDE):
         batch_size = x.shape[0] if isinstance(x, torch.Tensor) else 1
         return torch.zeros(batch_size, 3)  # u=0, v=0, p=0
 
-    def boundary_condition(self, t, boundary='left'):
-        """Default: no-slip walls (u=0, v=0)."""
-        batch_size = t.shape[0] if isinstance(t, torch.Tensor) else 1
-        return torch.zeros(batch_size, 2)  # u=0, v=0
+    def boundary_condition(self, points, boundary='left'):
+        """
+        Boundary conditions for channel flow.
+
+        Args:
+            points: Boundary points [batch_size, 3] as (x, y, t)
+            boundary: Which boundary ('left', 'right', 'top', 'bottom')
+
+        Returns:
+            torch.Tensor: Boundary values [batch_size, 3] as (u, v, p)
+        """
+        batch_size = points.shape[0] if isinstance(points, torch.Tensor) else 1
+        device = points.device if isinstance(points, torch.Tensor) else 'cpu'
+
+        if boundary == 'left':  # Inlet
+            u = torch.ones(batch_size, 1, device=device)
+            v = torch.zeros(batch_size, 1, device=device)
+            p = torch.zeros(batch_size, 1, device=device)
+            return torch.cat([u, v, p], dim=1)
+
+        elif boundary == 'right':  # Outlet - match inlet for mass conservation
+            u = torch.ones(batch_size, 1, device=device)
+            v = torch.zeros(batch_size, 1, device=device)
+            p = torch.zeros(batch_size, 1, device=device)
+            return torch.cat([u, v, p], dim=1)
+
+        elif boundary in ['top', 'bottom']:  # No-slip walls
+            return torch.zeros(batch_size, 3, device=device)
+
+        # Default: no-slip
+        return torch.zeros(batch_size, 3, device=device)
 
     def get_reynolds_number(self, L: float = 1.0, U: float = 1.0) -> float:
         """Compute Reynolds number Re = UL/ν."""
