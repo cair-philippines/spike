@@ -29,8 +29,8 @@ from .pdes import (
     KuramotoSivashinskyEquation,
     ReactionDiffusionEquation,
     NavierStokes2D,
-    LidDrivenCavity2D,
-    ChannelFlow2D,
+    NavierStokes2DLidDriven,
+    NavierStokes2DChannel,
 )
 from .odes import LorenzSystem, SEIRModel
 
@@ -51,8 +51,8 @@ __all__ = [
     'ReactionDiffusionEquation',
     # 2D PDEs
     'NavierStokes2D',
-    'LidDrivenCavity2D',
-    'ChannelFlow2D',
+    'NavierStokes2DLidDriven',
+    'NavierStokes2DChannel',
     # ODEs
     'LorenzSystem',
     'SEIRModel',
