@@ -154,7 +154,7 @@ class NavierStokes2D(BasePDE):
         return U * L / self.nu
 
 
-class LidDrivenCavity2D(NavierStokes2D):
+class NavierStokes2DLidDriven(NavierStokes2D):
     """
     Lid-Driven Cavity Flow (classic CFD benchmark).
 
@@ -170,7 +170,7 @@ class LidDrivenCavity2D(NavierStokes2D):
             domain_y=(0.0, domain_size),
             domain_t=(0.0, 10.0)  # Long time for steady state
         )
-        self.name = "LidDrivenCavity2D"
+        self.name = "NavierStokes2DLidDriven"
         self.lid_velocity = 1.0
 
     def boundary_condition(self, x, y, t):
@@ -196,7 +196,7 @@ class LidDrivenCavity2D(NavierStokes2D):
         return {'u': u_bc, 'v': v_bc}
 
 
-class ChannelFlow2D(NavierStokes2D):
+class NavierStokes2DChannel(NavierStokes2D):
     """
     2D Channel Flow (Poiseuille flow).
 
@@ -217,7 +217,7 @@ class ChannelFlow2D(NavierStokes2D):
         )
         self.dp_dx = dp_dx
         self.height = height
-        self.name = "ChannelFlow2D"
+        self.name = "NavierStokes2DChannel"
 
     def analytical_solution(self, y):
         """

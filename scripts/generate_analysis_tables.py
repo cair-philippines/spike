@@ -17,7 +17,8 @@ from spike.diffeq.pdes import (
     HeatEquation, AdvectionEquation, BurgersEquation,
     AllenCahnEquation, KdVEquation, ReactionDiffusionEquation,
     KuramotoSivashinskyEquation, SchrodingerEquation,
-    CahnHilliardEquation, Wave2D, Burgers2D, NavierStokes2D
+    CahnHilliardEquation, Wave2D, Burgers2D, NavierStokes2D,
+    NavierStokes2DLidDriven
 )
 from spike.diffeq.odes import LorenzSystem, SEIRModel
 
@@ -46,6 +47,7 @@ PDE_2D_SYSTEMS = {
     'wave_2d_base': Wave2D,
     'burgers_2d_base': Burgers2D,
     'navier_stokes_2d': NavierStokes2D,
+    'navier_stokes_2d_lid_driven': NavierStokes2DLidDriven,
 }
 
 ODE_SYSTEMS = {

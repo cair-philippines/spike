@@ -18,8 +18,8 @@ Available 2D PDEs:
 - Wave2D: 2D Wave (u_tt = c^2*(u_xx + u_yy))
 - Burgers2D: 2D Burgers convection-diffusion
 - NavierStokes2D: Incompressible Navier-Stokes
-- LidDrivenCavity2D: Classic CFD benchmark
-- ChannelFlow2D: Poiseuille flow
+- NavierStokes2DLidDriven: Classic CFD benchmark (lid-driven cavity)
+- NavierStokes2DChannel: Poiseuille flow (channel flow)
 """
 
 from .burgers import BurgersEquation
@@ -35,7 +35,7 @@ from .schrodinger import SchrodingerEquation
 from .heat_2d import Heat2D
 from .wave_2d import Wave2D
 from .burgers_2d import Burgers2D
-from .navier_stokes_2d import NavierStokes2D, LidDrivenCavity2D, ChannelFlow2D
+from .navier_stokes_2d import NavierStokes2D, NavierStokes2DLidDriven, NavierStokes2DChannel
 
 __all__ = [
     # 1D PDEs
@@ -54,6 +54,6 @@ __all__ = [
     'Wave2D',
     'Burgers2D',
     'NavierStokes2D',
-    'LidDrivenCavity2D',
-    'ChannelFlow2D',
+    'NavierStokes2DLidDriven',
+    'NavierStokes2DChannel',
 ]
