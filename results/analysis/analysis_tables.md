@@ -85,7 +85,8 @@ Temporal extrapolation, x in [0,1]
 | schrodinger | 0.9188 | 0.7376 | 0.6257 | 0.7242 |
 | wave_2d_base | 1.0000 | 0.1409 | -0.0979 | 0.6045 |
 | burgers_2d_base | 0.9580 | 0.9503 | 0.9756 | 0.9550 |
-| navier_stokes_2d | 0.8008 | 0.9041 | 0.8931 | 0.8750 |
+| navier_stokes_2d | 0.9225 | 0.8259 | 0.9356 | 0.8930 |
+| navier_stokes_2d_lid_driven | 0.9836 | 0.9632 | 0.9659 | 0.9684 |
 | lorenz | -0.8540 | -0.4453 | -0.6355 | -0.6355 |
 | seir | -1712199.6170 | 0.4553 | 0.5885 | 0.5885 |
 
@@ -113,15 +114,28 @@ Temporal extrapolation, x in [0,1]
 |-----|------|------|------|------|------|
 | wave_2d_base | 1.72e+04 | 2.06e-04 | 2.17e+05 | 7.69e+04 | 5.11e-02 |
 | burgers_2d_base | 9.66e-03 | 7.12e-03 | 4.92e-02 | 3.23e-02 | 9.34e-03 |
-| navier_stokes_2d | 1.81e-01 | 1.43e-01 | 2.58e-01 | 3.59e-01 | 1.56e-01 |
+| navier_stokes_2d | 1.09e+01 | 1.33e-01 | 4.31e+00 | 2.25e+01 | 2.47e+01 |
+| navier_stokes_2d_lid_driven | 3.74e-01 | 1.62e-01 | 3.33e-01 | 1.66e-01 | 5.25e-01 |
 
 ### OOD-Space (x,y in [1,2], t in [0,1])
+
+*For open-domain PDEs (Wave, Burgers). Not applicable to bounded-domain flows.*
 
 | PDE | PINN | PIKE-Euler | PIKE-RK4 | PIKE-EXPM | SPIKE-EXPM |
 |-----|------|------|------|------|------|
 | wave_2d_base | 1.14e+00 | 1.32e-04 | 1.35e+00 | 1.38e-01 | 5.20e-03 |
 | burgers_2d_base | 6.19e-03 | 1.62e-04 | 2.42e-04 | 2.79e-04 | 2.99e-03 |
-| navier_stokes_2d | 2.85e+00 | 4.50e-01 | 5.41e-01 | 1.39e+00 | 5.99e-01 |
+
+### OOD-Space Downstream (Channel Flow: x in [1,2], y in [0,1], t in [0,1])
+
+*Physically meaningful OOD for channel flow: downstream prediction within channel boundaries.*
+
+| PDE | PINN | PIKE-Euler | PIKE-RK4 | PIKE-EXPM | SPIKE-EXPM |
+|-----|------|------|------|------|------|
+| navier_stokes_2d | 2.76e+00 | 1.18e-01 | 8.44e-01 | 6.99e+01 | 1.62e+01 |
+
+*Note: OOD-Space is not physically meaningful for lid-driven cavity (bounded domain with fixed walls).*
+
 
 ### OOD-Time (x,y in [0,1], t in [1,3])
 
@@ -129,7 +143,8 @@ Temporal extrapolation, x in [0,1]
 |-----|------|------|------|------|------|
 | wave_2d_base | 3.19e+00 | 2.06e-04 | 6.23e-04 | 1.81e-02 | 1.16e-02 |
 | burgers_2d_base | 7.87e-02 | 9.29e-02 | 6.80e-02 | 7.88e-02 | 6.12e-02 |
-| navier_stokes_2d | 2.51e-03 | 2.30e-03 | 2.88e-03 | 3.21e-03 | 3.63e-03 |
+| navier_stokes_2d | 2.24e-02 | 2.78e-02 | 2.94e-02 | 2.67e-01 | 8.93e-01 |
+| navier_stokes_2d_lid_driven | 6.32e-02 | 1.17e-01 | 5.40e-02 | 1.18e-01 | 1.19e+00 |
 
 ## 7. Koopman Stability (max Re(lambda) <= 0.01)
 
@@ -147,6 +162,7 @@ Temporal extrapolation, x in [0,1]
 | wave_2d_base | / | / | / | / |
 | burgers_2d_base | / | / | / | / |
 | navier_stokes_2d | x | / | / | / |
+| navier_stokes_2d_lid_driven | x | / | / | / |
 | lorenz | x | / | / | / |
 | seir | x | / | / | / |
 
