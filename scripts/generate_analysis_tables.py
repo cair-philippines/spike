@@ -255,12 +255,14 @@ def generate_tables():
         output.append("| " + " | ".join(row) + " |")
     print("  2D In-Domain done")
 
+    # OOD-Space for open-domain 2D PDEs (Wave, Burgers: extend both x,y)
     output.append("\n### OOD-Space (x,y in [1,2], t in [0,1])\n")
+    output.append("*For open-domain PDEs (Wave, Burgers). Not applicable to bounded-domain flows.*\n")
     output.append("| PDE | " + " | ".join(LABELS) + " |")
     output.append("|-----|" + "|".join(["------" for _ in LABELS]) + "|")
 
-    for name, PDE_Class in PDE_2D_SYSTEMS.items():
-        diffeq = PDE_Class()
+    for name in ['wave_2d_base', 'burgers_2d_base']:
+        diffeq = PDE_2D_SYSTEMS[name]()
         row = [name]
         for variant in VARIANTS:
             model = load_model(name, variant)
@@ -270,7 +272,28 @@ def generate_tables():
             else:
                 row.append('N/A')
         output.append("| " + " | ".join(row) + " |")
-    print("  2D OOD-Space done")
+    print("  2D OOD-Space (open-domain) done")
+
+    # OOD-Space Downstream for Channel Flow (physically meaningful: x in [1,2], y in [0,1])
+    output.append("\n### OOD-Space Downstream (Channel Flow: x in [1,2], y in [0,1], t in [0,1])\n")
+    output.append("*Physically meaningful OOD for channel flow: downstream prediction within channel boundaries.*\n")
+    output.append("| PDE | " + " | ".join(LABELS) + " |")
+    output.append("|-----|" + "|".join(["------" for _ in LABELS]) + "|")
+
+    diffeq = PDE_2D_SYSTEMS['navier_stokes_2d']()
+    row = ['navier_stokes_2d']
+    for variant in VARIANTS:
+        model = load_model('navier_stokes_2d', variant)
+        if model:
+            mse = compute_residual(model, diffeq, domain={'x': (1, 2), 'y': (0, 1), 't': (0, 1)})
+            row.append(fmt(mse))
+        else:
+            row.append('N/A')
+    output.append("| " + " | ".join(row) + " |")
+    print("  2D OOD-Space Downstream (channel flow) done")
+
+    # Note about lid-driven cavity
+    output.append("\n*Note: OOD-Space is not physically meaningful for lid-driven cavity (bounded domain with fixed walls).*\n")
 
     output.append("\n### OOD-Time (x,y in [0,1], t in [1,3])\n")
     output.append("| PDE | " + " | ".join(LABELS) + " |")
