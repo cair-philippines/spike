@@ -96,8 +96,11 @@ spike/
 ## Citation
 
 ```bibtex
-@article{spike2025,
-  title={SPIKE: Sparse Koopman Regularization for Physics-Informed Neural Networks},
+@article{spike2026,
+  title={{SPIKE: Sparse Koopman Regularization for Physics-Informed Neural Networks}},
+  booktitle={Proceedings of the 3rd Conference on Parsimony and Learning},
+  series={Proceedings of Machine Learning Research},
+  publisher={PMLR},
   author={Minoza, Jose Marie Antonio},
   year={2026}
 }
